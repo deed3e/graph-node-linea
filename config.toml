@@ -1,0 +1,22 @@
+[store]
+[store.linea_testnet]
+connection = "postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/graph-node-linea-testnet"
+pool_size = 10
+
+[deployment]
+[[deployment.rule]]
+match = { network= "linea_testnet" }
+indexers = [ "index_node_linea_testnet" ]
+shard = "linea_testnet"
+
+
+[chains]
+ingestor = "default"
+[chains.linea_testnet]
+shard = "linea_testnet"
+provider = [
+  { label = "lineatestnet", url="https://linea-goerli.infura.io/v3/b35d224f006a413b80d648a9fdf60b62", features = [
+    "archive",
+    "traces",
+  ]}
+]
